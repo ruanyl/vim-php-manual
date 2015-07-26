@@ -20,5 +20,11 @@ if !exists("g:php_manual_online_search_shortcut")
     let g:php_manual_online_search_shortcut = '<C-h>'
 endif
 
-exec 'vnoremap <silent> <buffer> '.g:php_manual_online_search_shortcut.' y:call phpmanual#online#open(@@)<CR>'
-exec 'nnoremap <silent> <buffer> '.g:php_manual_online_search_shortcut.' :call phpmanual#online#open()<CR>'
+if !exists("g:php_manual_enable_online_search")
+    let g:php_manual_enable_online_search = 0
+endif
+
+if g:php_manual_enable_online_search == 1
+    exec 'vnoremap <silent> <buffer> '.g:php_manual_online_search_shortcut.' y:call phpmanual#online#open(@@)<CR>'
+    exec 'nnoremap <silent> <buffer> '.g:php_manual_online_search_shortcut.' :call phpmanual#online#open()<CR>'
+endif
